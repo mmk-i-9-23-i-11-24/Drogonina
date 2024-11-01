@@ -1,0 +1,15 @@
+Просто картинка
+@startuml
+participant Браузер #lightgreen
+participant Балансировщик #lightgreen
+participant Сервер #lightgreen
+
+Браузер -> Балансировщик: Запрос
+activate Балансировщик #pink
+Балансировщик -> Сервер: Запрос
+activate Сервер #pink
+Сервер --> Балансировщик: Ответ
+deactivate Сервер 
+Балансировщик --> Браузер: Ответ
+deactivate Балансировщик
+@enduml
