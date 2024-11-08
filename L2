@@ -1,0 +1,60 @@
+Картинка 1
+
+@startuml
+left to right direction
+actor Зам_директора
+actor Преподаватель
+actor Кл_руководитель
+actor Обучающийся
+usecase "Опубликовать пост с важной информацией" as uc1
+usecase "Составить расписание" as uc2
+usecase "Составить расписание мероприятий" as uc3
+usecase "Составить расписание каникул" as uc4
+usecase "Отправить сообщение" as uc5
+usecase "Прикрепить файл к сообщению" as uc6
+usecase "Разместить материалы для урока" as uc7
+usecase "Узнать расписание" as uc8
+usecase "Узнать свои оценки" as uc9
+usecase "Выставить оценки в электронный журнал" as uc10
+usecase "Составить расписание родительских собраний" as uc11
+usecase "Составить расписание занятий" as uc12
+Зам_директора -- uc1
+Зам_директора -- uc2
+Зам_директора -- uc5
+uc12 <.. uc2 : "Include"
+uc2 ..> uc3 : "Include"
+uc2 ..> uc4 : "Include"
+uc6 ..> uc5 : "extend"
+Преподаватель -- uc7
+Преподаватель -- uc5
+Преподаватель -- uc10
+Кл_руководитель --|> Преподаватель
+Обучающийся -- uc8
+Обучающийся -- uc9
+Обучающийся -- uc5
+Кл_руководитель -- uc11
+@enduml
+
+Картинка 2
+
+@startuml 
+left to right direction  
+actor Source <<Operator>>  as fc #white;line:red;line.bold 
+actor Sink <<Operator>> as fk #white;line:red;line.bold 
+rectangle Init-phase { 
+  usecase "Prepare service" <<Source>> as UC1 
+  usecase "Secure channel" <<Both>> as UC2 
+  usecase "Ensure readiness" <<Both>> as UC3 
+  usecase "Register with service" <<Sink>> as UC4 
+} 
+ 
+fc ..> fk #line:red : notify service address 
+fc --> UC1 #line:red 
+fc --> UC2 #line:red 
+fc --> UC3 #line:red 
+ 
+fk --> UC2 #line:red 
+fk --> UC3 #line:red 
+fk --> UC4 #line:red 
+ 
+@enduml
