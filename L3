@@ -1,0 +1,20 @@
+@startuml
+actor User
+participant "Приложение" as App
+participant "Платежный шлюз" as Gateway
+participant "Банк" as Bank
+
+User -> App: Выбор услуги
+App -> User: Запрос данных (даты, количество и т.д.)
+User -> App: Ввод данных
+App -> User: Подтверждение бронирования
+User -> App: Выбор способа оплаты
+App -> User: Запрос платежных данных
+User -> App: Ввод платежных данных
+App -> Gateway: Отправка запроса на оплату
+Gateway -> Bank: Запрос на обработку платежа
+Bank -> Gateway: Подтверждение/отказ платежа
+Gateway -> App: Ответ о статусе платежа
+App -> User: Уведомление о подтверждении бронирования
+
+@enduml
